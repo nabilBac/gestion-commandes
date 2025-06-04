@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Inscription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Inscription</h2>
+
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <p th:text="${successMessage}"></p>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <form th:action="@{/signup}" th:object="${registrationRequest}" method="post" class="needs-validation" novalidate>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Adresse email</label>
+            <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="exemple@domaine.com" required
+                   th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"> <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Nom d'utilisateur</label>
+            <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Nom d'utilisateur" required
+                   th:classappend="${#fields.hasErrors('username') ? 'is-invalid' : ''}"> <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Mot de passe" required minlength="6"
+                   th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"> <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+            <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" placeholder="Confirmer le mot de passe" required minlength="6"
+                   th:classappend="${#fields.hasErrors('confirmPassword') ? 'is-invalid' : ''}"> <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="invalid-feedback"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// La validation Bootstrap côté client reste utile pour une meilleure expérience utilisateur.
+// Elle se déclenche avant la soumission au serveur.
+(() => {
+  'use strict'
+
+  const form = document.querySelector('.needs-validation');
+  const password = document.getElementById('password');
+  const confirmPassword = document.getElementById('confirmPassword');
+
+  form.addEventListener('submit', event => {
+    // Réinitialise la validité de la confirmation du mot de passe pour éviter les messages obsolètes.
+    confirmPassword.setCustomValidity('');
+
+    // Vérifie la validité du formulaire selon les règles HTML5 et Bootstrap.
+    if (!form.checkValidity()) {
+      event.preventDefault(); // Empêche la soumission du formulaire.
+      event.stopPropagation(); // Arrête la propagation de l'événement.
+    }
+
+    // Vérifie que les mots de passe correspondent côté client.
+    if (password.value !== confirmPassword.value) {
+      confirmPassword.setCustomValidity('Les mots de passe ne correspondent pas.');
+      event.preventDefault(); // Empêche la soumission.
+      event.stopPropagation(); // Arrête la propagation.
+    }
+
+    // Ajoute la classe 'was-validated' pour afficher les retours de validation de Bootstrap.
+    form.classList.add('was-validated');
+  }, false); // Le 'false' indique que l'écouteur est appelé en phase de bubbling.
+})();
+</script>
+
+</body>
+</html>

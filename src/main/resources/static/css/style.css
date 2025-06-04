@@ -1,0 +1,653 @@
+:root {
+  --violet-clair: #6A0DAD; /* Violet foncé */
+  --violet-clair: #9B59B6; /* Violet plus clair */
+  --blanc-casse: #F7F6F9; /* Blanc cassé pour le fond */
+  --gris-fonce: #333333; /* Gris foncé pour le texte principal */
+  --gris-clair: #B0B0B0; /* Gris clair pour le texte secondaire */
+  --accent-orange: #E67E22; /* Orange pour les accents */
+  --accent-orange-fonce: #CC6B1E; /* Version plus foncée de l'orange pour les états de survol */
+  --vert-clair: #28a745; /* Vert clair pour le succès (menus) */
+  --bleu-clair: #17a2b8; /* Bleu clair pour l'info (sandwichs) */
+  --rouge-clair: #dc3545; /* Rouge clair pour le danger (desserts) */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--blanc-casse);
+  color: var(--gris-fonce);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6; /* Améliore la lisibilité */
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--violet-principal);
+  font-weight: 600; /* Plus gras pour l'emphase */
+  margin-bottom: 0.75rem; /* Espacement sous les titres */
+}
+
+/* --- */
+
+## Navbar Personnalisée
+
+.navbar {
+  background-color: var(--violet-clair);
+  padding: 1rem 0; /* Plus d'espace vertical */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre pour la profondeur */
+   position: relative; /* Assurez-vous que la position est définie pour que z-index fonctionne */
+    z-index: 1000; /* Valeur élevée pour être au-dessus de tout */
+}
+
+.navbar-brand {
+  font-size: 1.75rem; /* Plus grand pour l'impact */
+  font-weight: 700;
+  display: flex; /* Utilisation de flexbox pour l'alignement */
+  align-items: center; /* Centrer verticalement le logo et le texte */
+}
+
+.navbar-brand img {
+  max-height: 80px; /* Logo légèrement plus grand */
+  margin-right: 1rem; /* Espacement entre le logo et le texte */
+  transition: transform 0.3s ease; /* Animation de transition */
+}
+
+.navbar-brand:hover .logo-img {
+    transform: scale(1.1); /* Agrandissement au survol */
+}
+
+/* Texte des liens de la navbar et boutons, assure qu'il est blanc */
+.navbar-brand,
+.btn {
+  color: var(--blanc-casse) !important;
+}
+
+/* FORCE la couleur blanche pour les liens de navigation */
+.navbar .navbar-nav .nav-item .nav-link {
+    color: var(--blanc-casse) !important;
+}
+
+
+.navbar-toggler {
+    border-color: var(--blanc-casse);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(247, 246, 249, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- */
+
+## Boutons Personnalisés
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem; /* Légèrement plus arrondi */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Ombre plus douce au repos */
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1); /* Transition plus fluide et élégante */
+  border-width: 2px; /* Rendre la bordure un peu plus épaisse pour l'effet "outline" */
+}
+
+/* Effets de Survol (Hover) pour les Boutons de Catégorie */
+.btn-outline-primary:hover {
+    background-color: var(--violet-clair); /* Utilisation de la couleur principale pour le remplissage */
+    color: var(--blanc-casse) !important; /* Texte blanc au survol */
+    transform: translateY(-3px); /* Soulèvement subtil */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+.btn-outline-success:hover {
+    background-color: var(--vert-clair);
+    color: var(--blanc-casse) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-info:hover {
+    background-color: var(--bleu-clair);
+    color: var(--gris-fonce) !important; /* Texte noir pour "info" */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-warning:hover {
+    background-color: var(--accent-orange);
+    color: var(--blanc-casse) !important; /* Texte blanc pour "warning" */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--rouge-clair);
+    color: var(--blanc-casse) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--gris-clair);
+    color: var(--blanc-casse) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--gris-fonce);
+    color: var(--blanc-casse) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Texte des spans dans les boutons (normalement noir) */
+.btn span {
+    color: black !important;
+}
+
+/* Le texte des boutons de catégorie prend la couleur de la bordure par défaut,
+   mais devient blanc ou noir au survol grâce aux règles ci-dessus.
+   Ceci assure que le texte de base est bien visible. */
+.btn-outline-primary { color: var(--violet-clair) !important; }
+.btn-outline-success { color: var(--vert-clair) !important; }
+.btn-outline-info { color: var(--bleu-clair) !important; }
+.btn-outline-warning { color: var(--accent-orange) !important; }
+.btn-outline-danger { color: var(--rouge-clair) !important; }
+.btn-outline-secondary { color: var(--gris-fonce) !important; } /* Gris foncé pour meilleur contraste */
+.btn-outline-dark { color: var(--gris-fonce) !important; }
+
+/* REGLE OBSOLETE (supprimez si vous n'utilisez plus les icônes bootstrap dans vos boutons) */
+/* .btn .bi {
+    margin-bottom: 0.5rem;
+} */
+
+---
+
+## Section Principale et Grille de Boutons
+
+.container {
+  max-width: 1200px;
+  margin-top: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.display-5 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  color: var(--gris-clair);
+}
+
+/* Grille de boutons */
+.row.justify-content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col-6, .col-sm-4, .col-md-3, .col-lg-2 {
+    margin-bottom: 1rem;
+}
+
+/* Styles pour les boutons de catégorie uniformes */
+.row.justify-content-center .btn {
+    width: 120px;   /* Réduit la largeur des boutons à 120px */
+    height: 120px;  /* Réduit la hauteur des boutons à 120px */
+    padding: 0.75rem; /* Ajuste le padding interne pour un meilleur centrage */
+    font-size: 1rem; /* Réduit la taille de police du texte des catégories */
+    border-radius: 1rem;
+}
+
+/* Styles pour les images d'icônes dans les boutons de catégorie */
+.category-icon {
+    width: 2.5rem;   /* Taille des icônes */
+    height: 2.5rem;
+    object-fit: contain;
+    margin-bottom: 0.5rem; /* Espace entre l'icône et le texte */
+}
+
+/* REGLE OBSOLETE (car les icônes sont maintenant des <img> avec .category-icon) */
+/* .row.justify-content-center .btn .bi,
+.row.justify-content-center .btn svg {
+    font-size: 4rem;
+    margin-bottom: 0.75rem;
+} */
+.row.justify-content-center .btn span {
+    font-weight: 600; /* Le texte des catégories aussi en gras */
+}
+
+/* Liens d'aide et de conditions */
+.col-md-6 {
+  margin-bottom: 1rem;
+}
+
+/* Style pour le dropdown du profil utilisateur */
+.dropdown-menu {
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.dropdown-item {
+    color: var(--gris-fonce);
+}
+
+.dropdown-item:hover {
+    background-color: var(--blanc-casse);
+    color: var(--violet-clair);
+}
+
+/* --- */
+
+## Styles pour les Nouvelles Sections HTML (Cartes)
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.lead-sm {
+  font-size: 1.1rem;
+}
+
+.card.h-100 {
+  transition: transform 0.3s ease;
+}
+
+.card.h-100:hover {
+  transform: translateY(-5px);
+}
+
+/* Styles pour le pied de page (footer) */
+footer a {
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--blanc-casse) !important;
+}
+
+/* Couleurs spécifiques pour les icônes de la section "Pourquoi Commander" */
+.bi-lightning-charge-fill.text-primary {
+  color: var(--violet-clair) !important;
+}
+.bi-tags-fill.text-success {
+  color: var(--vert-clair) !important;
+}
+.bi-gear-fill.text-info {
+  color: var(--bleu-clair) !important;
+}
+
+/* Styles de secours pour forcer l'affichage des icônes Bootstrap */
+/* Ces règles assurent que les pseudo-éléments des icônes ont les propriétés essentielles */
+.bi::before {
+    display: inline-block; /* Assure que l'icône a une boîte de rendu */
+    font-family: "bootstrap-icons" !important; /* Force la bonne famille de police */
+    font-style: normal !important; /* Réinitialise tout style potentiellement conflictuel */
+    font-weight: normal !important; /* Réinitialise tout poids de police potentiellement conflictuel */
+    font-variant: normal !important; /* Réinitialise les variantes de police */
+    text-transform: none !important; /* Empêche les transformations de texte */
+    line-height: 1; /* Assure un alignement correct */
+    -webkit-font-smoothing: antialiased; /* Améliore le rendu sur WebKit */
+    -moz-osx-font-smoothing: grayscale; /* Améliore le rendu sur Firefox */
+}
+
+/* Force le caractère Unicode spécifique pour l'icône sandwich */
+.bi-sandwich::before {
+    content: "\F4EA" !important; /* Code Unicode pour l'icône bi-sandwich */
+}
+
+---
+
+## Styles pour les Cartes de Produits (Burgers, Menus, etc.)
+
+/* Base de la carte (déjà présente, juste pour référence et ajustements si besoin) */
+.card {
+  border-radius: 10px; /* Bords arrondis pour un look moderne */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile pour la profondeur */
+  background-color: var(--blanc-casse); /* Fond blanc cassé pour la cohérence */
+  border: none; /* Supprime la bordure par défaut de Bootstrap si non désirée */
+  overflow: hidden; /* Assure que les coins arrondis de l'image sont respectés */
+}
+
+/* Effet de survol sur la carte (déjà présent) */
+.card.h-100 {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition douce pour le soulèvement et l'ombre */
+}
+
+.card.h-100:hover {
+  transform: translateY(-5px); /* Soulèvement subtil au survol */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+}
+
+/* Image du produit dans la carte */
+.card-img-top {
+  width: 100%;
+  height: 200px; /* ajuste selon ce que tu veux */
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+
+
+/* Corps de la carte */
+.card-body {
+  padding: 1.25rem; /* Espacement intérieur standard Bootstrap */
+  display: flex; /* Utilise flexbox pour l'alignement des éléments */
+  flex-direction: column; /* Organise les éléments en colonne */
+  justify-content: space-between; /* Espace entre le titre/prix et le bouton */
+}
+
+/* Titre du produit */
+.card-title {
+  font-family: 'Poppins', sans-serif; /* Police des titres */
+  color: var(--violet-principal); /* Couleur violette principale */
+  font-weight: 600; /* Poids de police pour l'emphase */
+  font-size: 1.5rem; /* Taille de police légèrement plus grande pour les titres de produit */
+  margin-bottom: 0.5rem; /* Espace sous le titre */
+}
+
+/* Texte du prix */
+.card-text {
+  font-family: 'Roboto', sans-serif; /* Police du corps de texte */
+  color: var(--gris-fonce); /* Couleur gris foncé pour le texte principal */
+  font-size: 1.1rem; /* Taille de police pour le texte du prix */
+  margin-bottom: 1rem; /* Espace avant le bouton */
+  font-weight: 500; /* Légèrement plus gras pour le prix */
+}
+
+/* Bouton "Ajouter au panier" */
+.card-body .btn-primary {
+  background-color: var(--accent-orange); /* Couleur orange pour le bouton d'action principal */
+  border-color: var(--accent-orange); /* Bordure de la même couleur */
+  color: var(--blanc-casse) !important; /* Texte blanc cassé */
+  font-weight: 600; /* Texte du bouton en gras */
+  padding: 0.75rem 1.5rem; /* Padding du bouton */
+  border-radius: 0.5rem; /* Bords légèrement arrondis */
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1); /* Transition fluide */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Ombre douce au repos */
+}
+
+.card-body .btn-primary:hover {
+  background-color: var(--accent-orange-fonce); /* Utilisation de la nouvelle variable pour le survol */
+  border-color: var(--accent-orange-fonce); /* Utilisation de la nouvelle variable pour la bordure au survol */
+  transform: translateY(-2px); /* Soulèvement subtil */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+}
+
+/* Styles pour le conteneur principal des produits */
+.container.mt-5 {
+    max-width: 1200px; /* Gardez la largeur maximale cohérente */
+    margin-top: 2rem;
+}
+
+/* Titre "Nos Burgers" */
+.container.mt-5 h2.text-center {
+    font-family: 'Poppins', sans-serif;
+    color: var(--violet-clair);
+    font-weight: 600;
+    font-size: 2.5rem; /* Taille de titre cohérente avec display-5 */
+    margin-bottom: 1.5rem;
+}
+
+/* --- DEBUT DES NOUVELLES REGLES POUR LA PAGE D'ACCUEIL --- */
+
+/* Force la couleur violette pour la navbar et le footer qui ont la classe bg-dark */
+.navbar.bg-dark {
+    background-color: var(--violet-clair) !important;
+}
+
+.footer.bg-dark {
+    background-color: var(--violet-clair) !important;
+    color: var(--blanc-casse); /* Assure que le texte du footer est blanc cassé */
+}
+
+/* Force la couleur des liens dans le footer violet */
+.footer.bg-dark a {
+    color: var(--blanc-casse) !important;
+}
+
+.footer.bg-dark a:hover {
+    color: var(--blanc-casse) !important;
+    text-decoration: underline;
+}
+/* --- Styles pour la page de confirmation de commande --- */
+
+/* Couleur de texte violet principal */
+.text-violet-principal {
+    color: var(--violet-clair) !important;
+}
+
+/* Ajustement des boutons pour la page de confirmation */
+/* Pour s'assurer que les boutons ont le style désiré */
+.btn-primary {
+    background-color: var(--violet-clair);
+    border-color: var(--violet-clair);
+    color: var(--blanc-casse) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--violet-clair);
+    border-color: var(--violet-clair);
+    color: var(--blanc-casse) !important;
+}
+
+.btn-secondary {
+    background-color: var(--gris-clair); /* Ou une autre couleur de votre choix */
+    border-color: var(--gris-clair);
+    color: var(--gris-fonce) !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--gris-fonce);
+    border-color: var(--gris-fonce);
+    color: var(--blanc-casse) !important;
+}
+
+/* S'assurer que les titres h2 et h5 prennent bien le violet sur cette page si la classe est appliquée */
+h2.text-violet-principal,
+h5.text-violet-principal {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* styles.css ou un autre fichier CSS */
+
+.product-image {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+@media (max-width: 991.98px) {
+  .navbar .container-fluid {
+    position: relative;
+  }
+
+  .navbar-toggler {
+    position: relative;
+    z-index: 1100;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+
+    width: 250px;
+    max-width: 80vw;
+
+    background-color: var(--violet-clair);
+    z-index: 1050;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 0 0 .25rem .25rem;
+
+    /* Supprimons le padding global ici pour mieux contrôler chaque élément */
+    padding: 0; /* Important : réinitialise le padding du conteneur collapse */
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start;  // Peut être retiré car les padding vont gérer ça */
+  }
+
+  /* Liens de navigation (y compris le nom d'utilisateur) */
+  .navbar-collapse .navbar-nav {
+      width: 100%;
+      /* Réinitialise les marges et paddings par défaut des listes UL */
+      padding: 0;
+      margin: 0;
+      list-style: none; /* Enlève les puces de liste */
+  }
+
+  .navbar-collapse .navbar-nav .nav-item {
+      width: 100%;
+      text-align: left; /* Aligner le texte à gauche si besoin */
+      /* Réinitialise les marges et paddings par défaut des éléments de liste LI */
+      padding: 0;
+      margin: 0;
+  }
+
+  .navbar-collapse .navbar-nav .nav-item .nav-link {
+    color: var(--blanc-casse) !important;
+    /* --- NOUVELLE APPROCHE : Contrôler le padding uniquement ici --- */
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem; /* Haut Droite Bas Gauche - Utilisez une valeur simple pour commencer */
+    /* Vous pouvez augmenter la valeur du 4ème chiffre (padding-left) ici: */
+    /* padding: 0.75rem 1.5rem 0.75rem 2rem;  pour un décalage plus prononcé */
+    /* padding: 0.75rem 1.5rem 0.75rem 2.5rem; pour encore plus */
+  }
+
+  /* Styles pour les boutons "Sign In" et "Login" */
+  .navbar-collapse .navbar-nav .nav-item .btn {
+    display: block;
+    width: calc(100% - 3rem); /* Largeur avec padding (1.5rem de chaque côté = 3rem) */
+    margin: 5px 1.5rem; /* Marge pour l'alignement */
+    text-align: center;
+    background-color: transparent !important;
+    border-color: var(--blanc-casse) !important;
+    color: var(--blanc-casse) !important;
+  }
+
+  /* Survol des boutons Sign In / Login */
+  .navbar-collapse .navbar-nav .nav-item .btn:hover {
+    background-color: var(--blanc-casse) !important;
+    color: var(--violet-clair) !important;
+  }
+
+  /* Styles du dropdown-menu (pour l'utilisateur connecté) */
+  .navbar-collapse .dropdown-menu {
+      background-color: var(--violet-clair);
+      position: static;
+      float: none;
+      width: 100%;
+      margin-top: 0;
+      border: none;
+      box-shadow: none;
+      padding: 0; /* Réinitialise le padding par défaut du dropdown-menu */
+  }
+
+  .navbar-collapse .dropdown-item {
+      color: var(--blanc-casse) !important;
+      /* --- NOUVELLE APPROCHE : Contrôler le padding uniquement ici --- */
+      padding: 0.5rem 2rem 0.5rem 2rem; /* Haut Droite Bas Gauche - Utilisez une valeur simple pour commencer */
+      /* Vous pouvez augmenter la valeur du 4ème chiffre (padding-left) ici: */
+      /* padding: 0.5rem 2rem 0.5rem 2.5rem; pour un décalage plus prononcé */
+      /* padding: 0.5rem 2rem 0.5rem 3rem; pour encore plus */
+  }
+
+  .navbar-collapse .dropdown-item:hover {
+      background-color: var(--violet-clair) !important;
+      color: var(--blanc-casse) !important;
+  }
+
+  .navbar-collapse .dropdown-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+/* --- Hero Section --- */
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 450px;
+    background-image: url('../images/background-burger.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Supprimez ou commentez cette ligne si vous voulez que les éléments enfants gèrent leur propre couleur de texte */
+     color: white; /* <--- CETTE LIGNE EST LA CAUSE. VOUS POUVEZ LA SUPPRIMER OU LA COMMENTER */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    overflow: hidden;
+}
+
+/* NOUVELLE RÈGLE : Définir la couleur du texte du titre et du paragraphe en gris foncé */
+
+
+/* Si vous voulez que la couleur du titre h1 soit le violet principal de votre palette */
+/* .hero-section h1 {
+    color: var(--violet-principal) !important;
+} */
+/* Si vous voulez que la couleur du paragraphe p soit le gris clair de votre palette */
+/* .hero-section p.lead {
+    color: var(--gris-clair) !important;
+} */
+
+
+/* Overlay pour améliorer la lisibilité du texte */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur noire avec 50% d'opacité */
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+.hero-section h1,
+.hero-section p.lead {
+    color: var(--blanc-casse) !important; /* Force la couleur blanche cassé */
+}
+
+/* Assure que le contenu du texte est au-dessus de l'overlay */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Styles pour le bouton d'action dans la hero-section */
+.custom-hero-btn {
+    background-color: var(--accent-orange); /* Utilisez votre variable accent-orange */
+    border-color: var(--accent-orange);
+    color: var(--blanc-casse) !important; /* Texte blanc cassé pour le bouton */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.custom-hero-btn:hover {
+    background-color: var(--accent-orange-fonce); /* Nouvelle variable pour le survol */
+    border-color: var(--accent-orange-fonce);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustement pour les petits écrans si nécessaire */
+@media (max-width: 575.98px) {
+    .hero-section {
+        min-height: 350px;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+}
+/* --- FIN DES NOUVELLES REGLES POUR LA PAGE D'ACCUEIL --- */

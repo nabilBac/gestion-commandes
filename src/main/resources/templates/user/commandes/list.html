@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mes Commandes</title>
+
+  <!-- Bootstrap CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Toast & Animation CSS -->
+  <style>
+    #toast {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      min-width: 250px;
+      background-color: #333;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      opacity: 0.9;
+      z-index: 1050;
+      display: none;
+      transition: opacity 0.5s ease;
+    }
+    #toast.show {
+      display: block;
+    }
+
+    .row-highlight {
+      animation: highlight 2s ease-out;
+    }
+    @keyframes highlight {
+      from { background-color: #ffffcc; }
+      to { background-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-4">
+  <h1 class="mb-4">Mes Commandes</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Statut</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="commande : ${commandes}">
+        <td th:text="${commande.id}"></td>
+        <td th:text="${#temporals.format(commande.date, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:text="${commande.total} + ' €'"></td>
+        <td th:text="${commande.statut}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 d-flex gap-2">
+    <a href="/" class="btn btn-outline-secondary">← Continuer mes achats</a>
+  </div>
+</div>
+
+<!-- Toast HTML -->
+<div id="toast"></div>
+
+<!-- JS dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+<script>
+    // Fonction pour afficher un toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Connexion WebSocket + STOMP
+    const socket = new SockJS('/ws-commandes');
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, function (frame) {
+        console.log('Connecté : ' + frame);
+
+        // S'abonner au topic statut-commande
+        stompClient.subscribe('/topic/statut-commande', function (message) {
+            const body = JSON.parse(message.body);
+            console.log("Statut commande mis à jour :", body);
+
+            // Affiche un toast
+            showToast(`Commande #${body.commandeId} statut changé en ${body.statut}`);
+
+            // Met à jour dynamiquement la ligne dans le tableau
+            const rows = document.querySelectorAll("tbody tr");
+            rows.forEach(row => {
+                const idCell = row.querySelector("td:first-child");
+                if(idCell && idCell.textContent == body.commandeId) {
+                    const statutCell = row.querySelector("td:last-child");
+                    if(statutCell) {
+                        statutCell.textContent = body.statut;
+                        row.classList.add('row-highlight');
+                        setTimeout(() => row.classList.remove('row-highlight'), 2000);
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

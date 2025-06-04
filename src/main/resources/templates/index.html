@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Le Carré – Accueil</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo-le-carre.png}" alt="Le Carré" class="logo-img">
+        </a>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M13.468 12.37C12.758 11.226 11.398 10.5 8 10.5s-4.758.726-5.468 1.87A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                            <path fill-rule="evenodd"
+                                  d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <span th:text="${#authentication.name}">Utilisateur</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                        <li><a class="dropdown-item" th:href="@{/user/commandes}">Mes Commandes</a></li>
+                        <li><a class="dropdown-item" th:href="@{/profile}">Mon Compte</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form th:action="@{/logout}" method="post">
+                                <button type="submit" class="dropdown-item">Déconnexion</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <li class="nav-item me-2" sec:authorize="isAnonymous()">
+                    <a class="btn btn-outline-light" th:href="@{/signup}">Sign In</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="btn btn-outline-light" th:href="@{/login}">Login</a>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="hero-section text-white d-flex align-items-center justify-content-center text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-3">Bienvenue chez Le Carré</h1>
+        <p class="lead mb-4">Commandez vos plats favoris en quelques clics !</p>
+        <a th:href="@{/user/produits}" class="btn btn-primary btn-lg custom-hero-btn mt-3">Découvrir nos Saveurs</a>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <div class="row text-center mb-4 justify-content-center">
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
+            <a class="btn btn-outline-primary btn-lg w-100 d-flex flex-column align-items-center justify-content-center" th:href="@{/user/burgers}">
+                <img th:src="@{/images/hamburger.png}" alt="Icône Burger" class="category-icon">
+                <span class="mt-2 text-dark">Burgers</span> </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
+            <a class="btn btn-outline-success btn-lg w-100 d-flex flex-column align-items-center justify-content-center" th:href="@{/user/menus}">
+                <img th:src="@{/images/burger.png}" alt="Icône Menu" class="category-icon"> <span class="mt-2 text-dark">Menus</span> </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
+            <a class="btn btn-outline-info btn-lg w-100 d-flex flex-column align-items-center justify-content-center" th:href="@{/user/sandwichs}">
+                <img th:src="@{/images/sandwich.png}" alt="Icône Sandwich" class="category-icon"> <span class="mt-2 text-dark">Sandwichs</span> </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
+            <a class="btn btn-outline-warning btn-lg w-100 d-flex flex-column align-items-center justify-content-center" th:href="@{/user/boissons}">
+                <img th:src="@{/images/soda-bottle.png}" alt="Icône Boisson" class="category-icon"> <span class="mt-2 text-dark">Boissons</span> </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
+            <a class="btn btn-outline-danger btn-lg w-100 d-flex flex-column align-items-center justify-content-center" th:href="@{/user/desserts}">
+                <img th:src="@{/images/ice-cream.png}" alt="Icône Dessert" class="category-icon"> <span class="mt-2 text-dark">Desserts</span> </a>
+        </div>
+
+
+    </div>
+
+</div>
+
+</div>
+<footer class="footer bg-dark text-white py-4 mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <p>&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> Le Carré. Tous droits réservés.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item me-3"><a th:href="@{/support}" class="text-white text-decoration-none">Aide & Contact</a></li>
+                    <li class="list-inline-item"><a th:href="@{/conditions}" class="text-white text-decoration-none">Conditions & FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

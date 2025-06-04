@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Le Carré – Confirmation de commande</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body class="container mt-5 py-4"> <div class="card p-4 shadow-sm"> <h1 class="mb-4 text-center">Confirmation de commande</h1> <div th:if="${commande != null}">
+    <h2 class="mb-3 text-center text-violet-principal">Merci pour votre commande !</h2> <p class="lead text-center">Elle a été enregistrée le
+    <span th:text="${#temporals.format(commande.date, 'dd/MM/yyyy HH:mm:ss')}"></span>.
+</p>
+
+    <p class="fs-4 text-center">Total : <strong><span th:text="${commande.total}"></span> €</strong></p> <h5 class="mt-4 mb-3 border-bottom pb-2 text-violet-principal">Produits commandés :</h5> <ul class="list-group list-group-flush"> <li class="list-group-item" th:each="ligne : ${commande.lignes}">
+    <span th:text="${ligne.produit.nom}"></span> x <span th:text="${ligne.quantite}"></span>
+</li>
+</ul>
+
+    <div class="mt-5 text-center">
+        <a href="/" class="btn btn-primary btn-lg">Retour à l’accueil</a> <form th:action="@{/logout}" method="post" class="d-inline">
+        <button type="submit" class="btn btn-secondary btn-lg ms-3">Se déconnecter</button> </form>
+    </div>
+</div>
+    <div th:if="${commande == null}" class="text-center">
+        <p class="lead">Aucune commande à afficher.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
