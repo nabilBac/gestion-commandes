@@ -9,7 +9,7 @@ public class LignePanier {
         this.quantite = quantite;
     }
 
-    // getters & setters
+
     public Produit getProduit() { return produit; }
     public void setProduit(Produit produit) { this.produit = produit; }
 

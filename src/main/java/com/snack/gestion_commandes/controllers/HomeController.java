@@ -8,9 +8,9 @@ public class HomeController {
 
 
 
-    // Vous pouvez aussi avoir un @GetMapping("/index") si cette page est vraiment distincte
+
     @GetMapping("/index")
     public String userIndex() {
-        return "index"; // Ceci sera votre page "index.html" spécifique aux utilisateurs connectés avec ROLE_USER
+        return "index";
     }
 }

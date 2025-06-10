@@ -26,7 +26,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // IMPORTANT : REMPLACER L'ANCIENNE MÉTHODE saveUser() PAR CELLE-CI
+
     @Transactional // S'assure que toutes les opérations (recherche, insertion) sont atomiques
     public User registerNewUser(RegistrationRequest registrationRequest) throws Exception {
         // 1. Vérifier si l'email existe déjà
@@ -62,6 +62,5 @@ public class UserService {
         return userRepository.save(user); // Retourne l'utilisateur sauvegardé
     }
 
-    // Assurez-vous qu'il n'y a PAS d'autre méthode saveUser(User user) ici.
-    // Si elle est présente, supprimez-la.
+
 }

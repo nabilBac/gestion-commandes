@@ -93,5 +93,5 @@ public class PanierController {
         return "redirect:/panier";
     }
 
-    // Ici on pourrait ajouter la méthode pour valider la commande, que je peux détailler ensuite.
+
 }

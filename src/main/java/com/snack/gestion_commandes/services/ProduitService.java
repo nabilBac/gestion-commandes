@@ -7,5 +7,5 @@ import java.util.List;
 public interface ProduitService {
     List<Produit> findByType(TypeProduit type);
     Produit findById(Long id);
-    // autres méthodes utiles...
+
 }

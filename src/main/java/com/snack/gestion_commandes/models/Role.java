@@ -22,7 +22,7 @@ public class Role {
         this.name = name;
     }
 
-    // getters et setters
+
     public Long getId() {
         return id;
     }

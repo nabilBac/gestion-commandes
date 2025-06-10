@@ -50,13 +50,13 @@ public class CommandeController {
     @PostMapping("/supprimer/{id}")
     public String supprimerCommande(@PathVariable Long id) {
         commandeService.supprimerCommande(id);
-        return "redirect:/commande/liste"; // ajuste cette route vers ta page de liste
+        return "redirect:/commande/liste";
     }
     @GetMapping("/liste")
     public String listerCommandes(Model model) {
         List<Commande> commandes = commandeService.toutesLesCommandes();
         model.addAttribute("commandes", commandes);
         return "admin/liste_commandes";
-        // nom du template Thymeleaf
+        
     }
 }

@@ -35,7 +35,7 @@ h1, h2, h3 {
   background-color: var(--violet-clair);
   padding: 1rem 0; /* Plus d'espace vertical */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre pour la profondeur */
-   position: relative; /* Assurez-vous que la position est définie pour que z-index fonctionne */
+   position: relative; /*  position  définie pour que z-index fonctionne */
     z-index: 1000; /* Valeur élevée pour être au-dessus de tout */
 }
 
@@ -155,10 +155,7 @@ h1, h2, h3 {
 .btn-outline-secondary { color: var(--gris-fonce) !important; } /* Gris foncé pour meilleur contraste */
 .btn-outline-dark { color: var(--gris-fonce) !important; }
 
-/* REGLE OBSOLETE (supprimez si vous n'utilisez plus les icônes bootstrap dans vos boutons) */
-/* .btn .bi {
-    margin-bottom: 0.5rem;
-} */
+
 
 ---
 
@@ -212,12 +209,7 @@ h1, h2, h3 {
     margin-bottom: 0.5rem; /* Espace entre l'icône et le texte */
 }
 
-/* REGLE OBSOLETE (car les icônes sont maintenant des <img> avec .category-icon) */
-/* .row.justify-content-center .btn .bi,
-.row.justify-content-center .btn svg {
-    font-size: 4rem;
-    margin-bottom: 0.75rem;
-} */
+
 .row.justify-content-center .btn span {
     font-weight: 600; /* Le texte des catégories aussi en gras */
 }
@@ -328,7 +320,7 @@ footer a:hover {
 /* Image du produit dans la carte */
 .card-img-top {
   width: 100%;
-  height: 200px; /* ajuste selon ce que tu veux */
+  height: 200px;
   object-fit: cover;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
@@ -518,7 +510,7 @@ h5.text-violet-principal {
     color: var(--blanc-casse) !important;
     /* --- NOUVELLE APPROCHE : Contrôler le padding uniquement ici --- */
     padding: 0.75rem 1.5rem 0.75rem 1.5rem; /* Haut Droite Bas Gauche - Utilisez une valeur simple pour commencer */
-    /* Vous pouvez augmenter la valeur du 4ème chiffre (padding-left) ici: */
+
     /* padding: 0.75rem 1.5rem 0.75rem 2rem;  pour un décalage plus prononcé */
     /* padding: 0.75rem 1.5rem 0.75rem 2.5rem; pour encore plus */
   }
@@ -556,7 +548,7 @@ h5.text-violet-principal {
       color: var(--blanc-casse) !important;
       /* --- NOUVELLE APPROCHE : Contrôler le padding uniquement ici --- */
       padding: 0.5rem 2rem 0.5rem 2rem; /* Haut Droite Bas Gauche - Utilisez une valeur simple pour commencer */
-      /* Vous pouvez augmenter la valeur du 4ème chiffre (padding-left) ici: */
+
       /* padding: 0.5rem 2rem 0.5rem 2.5rem; pour un décalage plus prononcé */
       /* padding: 0.5rem 2rem 0.5rem 3rem; pour encore plus */
   }
@@ -580,8 +572,8 @@ h5.text-violet-principal {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Supprimez ou commentez cette ligne si vous voulez que les éléments enfants gèrent leur propre couleur de texte */
-     color: white; /* <--- CETTE LIGNE EST LA CAUSE. VOUS POUVEZ LA SUPPRIMER OU LA COMMENTER */
+
+     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -589,16 +581,6 @@ h5.text-violet-principal {
     overflow: hidden;
 }
 
-/* NOUVELLE RÈGLE : Définir la couleur du texte du titre et du paragraphe en gris foncé */
-
-
-/* Si vous voulez que la couleur du titre h1 soit le violet principal de votre palette */
-/* .hero-section h1 {
-    color: var(--violet-principal) !important;
-} */
-/* Si vous voulez que la couleur du paragraphe p soit le gris clair de votre palette */
-/* .hero-section p.lead {
-    color: var(--gris-clair) !important;
 } */
 
 
@@ -627,7 +609,7 @@ h5.text-violet-principal {
 
 /* Styles pour le bouton d'action dans la hero-section */
 .custom-hero-btn {
-    background-color: var(--accent-orange); /* Utilisez votre variable accent-orange */
+    background-color: var(--accent-orange);
     border-color: var(--accent-orange);
     color: var(--blanc-casse) !important; /* Texte blanc cassé pour le bouton */
     font-weight: bold;

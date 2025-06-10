@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/user/home")
     public String userHome() {
-        return "user/home"; // This remains, it's a dashboard for logged-in users.
+        return "user/home";
     }
 
     // --- START: REMOVE THESE METHODS ---
@@ -52,7 +52,7 @@ public class UserController {
 
         model.addAttribute("username", username);
 
-        return "user/profile"; // This remains, for displaying user profile.
+        return "user/profile";
     }
 
 }

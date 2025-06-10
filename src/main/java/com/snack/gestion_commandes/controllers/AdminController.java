@@ -23,14 +23,14 @@ public class AdminController {
 
     @GetMapping("/dashboard")
     public String adminDashboard() {
-        return "admin/dashboard"; // Assure-toi d’avoir ce template dans templates/admin/dashboard.html
+        return "admin/dashboard";
     }
     @GetMapping("/commandes/simple")
     @PreAuthorize("hasRole('ADMIN')")
     public String listeCommandesAdmin(Model model) {
         List<Commande> commandes = commandeService.toutesLesCommandes();
         model.addAttribute("commandes", commandes);
-        return "admin/liste_commandes"; // à adapter selon ton chemin de fichier
+        return "admin/liste_commandes";
     }
 
 }
